@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Estudiante – Colegio San Andrés</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="page-inner">
+
+  <div class="bg-pattern"></div>
+
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">🎓</span>
+      <span class="logo-text">Colegio San Andrés</span>
+    </div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html" class="active">Registrar</a>
+      <a href="lista.php">Estudiantes</a>
+    </nav>
+  </header>
+
+  <main class="form-page">
+    <div class="form-header">
+      <h1>Registro de <span class="accent">Estudiante</span></h1>
+      <p>Complete todos los campos para registrar un nuevo estudiante.</p>
+    </div>
+
+    <div class="form-container">
+      <form action="php/guardar.php" method="POST" id="formRegistro">
+
+        <div class="form-section">
+          <h2 class="section-title">📌 Datos Personales</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nombres">Nombres *</label>
+              <input type="text" id="nombres" name="nombres" placeholder="Ej: Juan Camilo" required />
+            </div>
+            <div class="form-group">
+              <label for="apellidos">Apellidos *</label>
+              <input type="text" id="apellidos" name="apellidos" placeholder="Ej: García López" required />
+            </div>
+            <div class="form-group">
+              <label for="documento">N° Documento *</label>
+              <input type="text" id="documento" name="documento" placeholder="Ej: 1234567890" required />
+            </div>
+            <div class="form-group">
+              <label for="fecha_nac">Fecha de Nacimiento *</label>
+              <input type="date" id="fecha_nac" name="fecha_nac" required />
+            </div>
+            <div class="form-group">
+              <label for="genero">Género *</label>
+              <select id="genero" name="genero" required>
+                <option value="">Seleccionar...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="O">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="Ej: 3001234567" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2 class="section-title">🏫 Datos Académicos</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="grado">Grado *</label>
+              <select id="grado" name="grado" required>
+                <option value="">Seleccionar...</option>
+                <option value="1">1° Primaria</option>
+                <option value="2">2° Primaria</option>
+                <option value="3">3° Primaria</option>
+                <option value="4">4° Primaria</option>
+                <option value="5">5° Primaria</option>
+                <option value="6">6° Secundaria</option>
+                <option value="7">7° Secundaria</option>
+                <option value="8">8° Secundaria</option>
+                <option value="9">9° Secundaria</option>
+                <option value="10">10° Media</option>
+                <option value="11">11° Media</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="grupo">Grupo *</label>
+              <select id="grupo" name="grupo" required>
+                <option value="">Seleccionar...</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="año_matricula">Año Matrícula *</label>
+              <input type="number" id="año_matricula" name="año_matricula" value="2025" min="2020" max="2030" required />
+            </div>
+            <div class="form-group">
+              <label for="estado">Estado *</label>
+              <select id="estado" name="estado" required>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+                <option value="retirado">Retirado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2 class="section-title">👨‍👩‍👦 Datos del Acudiente</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="acudiente">Nombre del Acudiente *</label>
+              <input type="text" id="acudiente" name="acudiente" placeholder="Ej: María García" required />
+            </div>
+            <div class="form-group">
+              <label for="tel_acudiente">Teléfono Acudiente *</label>
+              <input type="tel" id="tel_acudiente" name="tel_acudiente" placeholder="Ej: 3109876543" required />
+            </div>
+            <div class="form-group full-width">
+              <label for="direccion">Dirección</label>
+              <input type="text" id="direccion" name="direccion" placeholder="Ej: Calle 10 # 5-30, Barrio Centro" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <a href="index.html" class="btn btn-outline">Cancelar</a>
+          <button type="reset" class="btn btn-ghost">Limpiar</button>
+          <button type="submit" class="btn btn-primary">Guardar Estudiante ✓</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Colegio San Andrés · Sistema de Gestión Estudiantil</p>
+  </footer>
+
+  <script>
+    document.getElementById('formRegistro').addEventListener('submit', function(e) {
+      const campos = this.querySelectorAll('[required]');
+      let valido = true;
+      campos.forEach(c => {
+        if (!c.value.trim()) {
+          c.style.borderColor = '#e74c3c';
+          valido = false;
+        } else {
+          c.style.borderColor = '';
+        }
+      });
+      if (!valido) {
+        e.preventDefault();
+        alert('Por favor completa todos los campos obligatorios (*)');
+      }
+    });
+  </script>
+
+</body>
+</html>
