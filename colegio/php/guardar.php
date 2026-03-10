@@ -27,22 +27,31 @@ if (empty($nombres) || empty($apellidos) || empty($documento)) {
     die("❌ Faltan campos obligatorios. <a href='../registro.html'>Volver</a>");
 }
 
+// Preparar consulta
 $stmt = $conn->prepare(
     "INSERT INTO estudiantes
      (nombres, apellidos, documento, fecha_nac, genero, telefono,
-      grado, grupo, año_matricula, estado, acudiente, tel_acudiente, direccion)
+      grado, grupo, `año_matricula`, estado, acudiente, tel_acudiente, direccion)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 );
+
+if (!$stmt) {
+    die("Error al preparar la consulta: " . $conn->error);
+}
+
+// Vincular parámetros
 $stmt->bind_param(
-    "ssssssisssss s",
+    "ssssssisissss",
     $nombres, $apellidos, $documento, $fecha_nac, $genero, $telefono,
     $grado, $grupo, $año_matricula, $estado, $acudiente, $tel_acudiente, $direccion
 );
 
+// Ejecutar y manejar resultado
 if ($stmt->execute()) {
     header("Location: ../lista.php?msg=guardado");
 } else {
-    header("Location: ../registro.html?error=1");
+    die("❌ Error al guardar: " . $stmt->error . "<br><a href='../registro.html'>Volver</a>");
 }
+
 exit;
 ?>
